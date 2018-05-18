@@ -1,0 +1,44 @@
+/*skill*/
+* {box-sizing: border-box}
+
+
+.skills {
+  text-align: right;
+  padding-right: 10px;
+  line-height: 20px;
+  color: white;
+}
+
+.HTML5 {width: 70%; background-color: #4CAF50;}
+.AfterEffect {width: 60%; background-color: #2196F3;}
+.Photoshop {width: 75%; background-color: #f44336;}
+.Creative {width: 50%; background-color: #808080;}
+/**/
+
+/*hover menu*/
+#mySidenav a {
+    position: fixed;
+    left: -95px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 120px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+}
+
+#mySidenav a:hover {
+    left: 0;
+}
+
+#hoverportfolio {
+    top: 80px;
+    background-color: #4CAF50;
+}
+
+#hoverabout {
+    top: 140px;
+    background-color: #2196F3;
+}
+
