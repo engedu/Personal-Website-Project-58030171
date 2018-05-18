@@ -1,38 +1,27 @@
 /** Isotope v1.5.25 */
-
-
+//https://github.com/metafizzy/isotope
 /*global jQuery: false */
 
 (function( window, $, undefined ){
-
   'use strict';
-
   // get global vars
   var document = window.document;
   var Modernizr = window.Modernizr;
-
   // helper function
   var capitalize = function( str ) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
-
   // ========================= getStyleProperty  ===============================
-
-
   var prefixes = 'Moz Webkit O Ms'.split(' ');
-
   var getStyleProperty = function( propName ) {
     var style = document.documentElement.style,
         prefixed;
-
     // test standard property first
     if ( typeof style[propName] === 'string' ) {
       return propName;
     }
-
     // capitalize
     propName = capitalize( propName );
-
     // test vendor specific properties
     for ( var i=0, len = prefixes.length; i < len; i++ ) {
       prefixed = prefixes[i] + propName;
@@ -41,19 +30,13 @@
       }
     }
   };
-
   var transformProp = getStyleProperty('transform'),
       transitionProp = getStyleProperty('transitionProperty');
-
-
   // ========================= miniModernizr ===============================
-
-
   var tests = {
     csstransforms: function() {
       return !!transformProp;
     },
-
     csstransforms3d: function() {
       var test = !!getStyleProperty('perspective');
       // double check for Chrome's false positive
@@ -63,22 +46,17 @@
             $style = $('<style>' + mediaQuery + '{#modernizr{height:3px}}' + '</style>')
                         .appendTo('head'),
             $div = $('<div id="modernizr" />').appendTo('html');
-
         test = $div.height() === 3;
-
         $div.remove();
         $style.remove();
       }
       return test;
     },
-
     csstransitions: function() {
       return !!transitionProp;
     }
   };
-
   var testName;
-
   if ( Modernizr ) {
     // if there's a previous Modernzir, check if there are necessary tests
     for ( testName in tests) {
@@ -92,27 +70,19 @@
     Modernizr = window.Modernizr = {
       _version : '1.6ish: miniModernizr for Isotope'
     };
-
     var classes = ' ';
     var result;
-
     // Run through tests
     for ( testName in tests) {
       result = tests[ testName ]();
       Modernizr[ testName ] = result;
       classes += ' ' + ( result ?  '' : 'no-' ) + testName;
     }
-
     // Add the new classes to the <html> element.
     $('html').addClass( classes );
   }
-
-
   // ========================= isoTransform ===============================
-
-
   if ( Modernizr.csstransforms ) {
-
         // i.e. transformFnNotations.scale(0.5) >> 'scale3d( 0.5, 0.5, 1)'
     var transformFnNotations = Modernizr.csstransforms3d ?
       { // 3D transform functions
@@ -132,7 +102,6 @@
         }
       }
     ;
-
     var setIsoTransform = function ( elem, name, value ) {
           // unpack current transform data
       var data =  $.data( elem, 'isoTransform' ) || {},
@@ -140,17 +109,14 @@
           fnName,
           transformObj = {},
           transformValue;
-
       // i.e. newData.scale = 0.5
       newData[ name ] = value;
       // extend new value over current data
       $.extend( data, newData );
-
       for ( fnName in data ) {
         transformValue = data[ fnName ];
         transformObj[ fnName ] = transformFnNotations[ fnName ]( transformValue );
       }
-
       // get proper order
       // ideally, we could loop through this give an array, but since we only have
       // a couple transforms we're keeping track of, we'll do it like so
@@ -158,18 +124,13 @@
           scaleFn = transformObj.scale || '',
           // sorting so translate always comes first
           valueFns = translateFn + scaleFn;
-
       // set data back in elem
       $.data( elem, 'isoTransform', data );
-
       // set name to vendor specific property
       elem.style[ transformProp ] = valueFns;
     };
-
     // ==================== scale ===================
-
     $.cssNumber.scale = true;
-
     $.cssHooks.scale = {
       set: function( elem, value ) {
         // uncomment this bit if you want to properly parse strings
@@ -183,46 +144,23 @@
         return transform && transform.scale ? transform.scale : 1;
       }
     };
-
     $.fx.step.scale = function( fx ) {
       $.cssHooks.scale.set( fx.elem, fx.now+fx.unit );
     };
-
-
     // ==================== translate ===================
-
     $.cssNumber.translate = true;
-
     $.cssHooks.translate = {
       set: function( elem, value ) {
-
-        // uncomment this bit if you want to properly parse strings
-        // if ( typeof value === 'string' ) {
-        //   value = value.split(' ');
-        // }
-        //
-        // var i, val;
-        // for ( i = 0; i < 2; i++ ) {
-        //   val = value[i];
-        //   if ( typeof val === 'string' ) {
-        //     val = parseInt( val );
-        //   }
-        // }
-
         setIsoTransform( elem, 'translate', value );
       },
-
       get: function( elem, computed ) {
         var transform = $.data( elem, 'isoTransform' );
         return transform && transform.translate ? transform.translate : [ 0, 0 ];
       }
     };
-
   }
-
   // ========================= get transition-end event ===============================
   var transitionEndEvent, transitionDurProp;
-
   if ( Modernizr.csstransitions ) {
     transitionEndEvent = {
       WebkitTransitionProperty: 'webkitTransitionEnd',  // webkit
@@ -230,18 +168,12 @@
       OTransitionProperty: 'oTransitionEnd otransitionend',
       transitionProperty: 'transitionend'
     }[ transitionProp ];
-
     transitionDurProp = getStyleProperty('transitionDuration');
   }
-
   // ========================= smartresize ===============================
-
- 
-
   var $event = $.event,
       dispatchMethod = $.event.handle ? 'handle' : 'dispatch',
       resizeTimeout;
-
   $event.special.smartresize = {
     setup: function() {
       $(this).bind( "resize", $event.special.smartresize.handler );
@@ -253,39 +185,27 @@
       // Save the context
       var context = this,
           args = arguments;
-
       // set correct event type
       event.type = "smartresize";
-
       if ( resizeTimeout ) { clearTimeout( resizeTimeout ); }
       resizeTimeout = setTimeout(function() {
         $event[ dispatchMethod ].apply( context, args );
       }, execAsap === "execAsap"? 0 : 100 );
     }
   };
-
   $.fn.smartresize = function( fn ) {
     return fn ? this.bind( "smartresize", fn ) : this.trigger( "smartresize", ["execAsap"] );
   };
-
-
-
 // ========================= Isotope ===============================
-
-
   // our "Widget" object constructor
   $.Isotope = function( options, element, callback ){
     this.element = $( element );
-
     this._create( options );
     this._init( callback );
   };
-
   // styles of container element we want to keep track of
   var isoContainerStyles = [ 'width', 'height' ];
-
   var $window = $(window);
-
   $.Isotope.settings = {
     resizable: true,
     layoutMode : 'masonry',
@@ -309,17 +229,12 @@
     transformsEnabled: true,
     itemPositionDataEnabled: false
   };
-
   $.Isotope.prototype = {
-
     // sets up widget
     _create : function( options ) {
-
       this.options = $.extend( {}, $.Isotope.settings, options );
-
       this.styleQueue = [];
       this.elemCount = 0;
-
       // get original styles in case we re-apply them in .destroy()
       var elemStyle = this.element[0].style;
       this.originalStyle = {};
@@ -334,10 +249,8 @@
       }
       // apply container style from options
       this.element.css( this.options.containerStyle );
-
       this._updateAnimationEngine();
       this._updateUsingTransforms();
-
       // sorting
       var originalOrderSorter = {
         'original-order' : function( $elem, instance ) {
@@ -348,57 +261,45 @@
           return Math.random();
         }
       };
-
       this.options.getSortData = $.extend( this.options.getSortData, originalOrderSorter );
-
       // need to get atoms
       this.reloadItems();
-
       // get top left position of where the bricks should be
       this.offset = {
         left: parseInt( ( this.element.css('padding-left') || 0 ), 10 ),
         top: parseInt( ( this.element.css('padding-top') || 0 ), 10 )
       };
-
       // add isotope class first time around
       var instance = this;
       setTimeout( function() {
         instance.element.addClass( instance.options.containerClass );
       }, 0 );
-
       // bind resize method
       if ( this.options.resizable ) {
         $window.bind( 'smartresize.isotope', function() {
           instance.resize();
         });
       }
-
       // dismiss all click events from hidden events
       this.element.delegate( '.' + this.options.hiddenClass, 'click', function(){
         return false;
       });
-
     },
-
     _getAtoms : function( $elems ) {
       var selector = this.options.itemSelector,
           // filter & find
           $atoms = selector ? $elems.filter( selector ).add( $elems.find( selector ) ) : $elems,
           // base style for atoms
           atomStyle = { position: 'absolute' };
-
       // filter out text nodes
       $atoms = $atoms.filter( function( i, atom ) {
         return atom.nodeType === 1;
       });
-
       if ( this.usingTransforms ) {
         atomStyle.left = 0;
         atomStyle.top = 0;
       }
-
       $atoms.css( atomStyle ).addClass( this.options.itemClass );
-
       this.updateSortData( $atoms, true );
 
       return $atoms;
@@ -1168,28 +1069,20 @@
           props.x = props.width;
           props.y = 0;
         }
-
         // position the atom
         instance._pushPosition( $this, props.x, props.y );
-
         props.width = Math.max( props.x + atomW, props.width );
         props.y += atomH;
 
       });
     },
-
     _fitColumnsGetContainerSize : function () {
       return { width : this.fitColumns.width };
     },
-
     _fitColumnsResizeChanged : function() {
       return true;
     },
-
-
-
     // ====================== cellsByColumn ======================
-
     _cellsByColumnReset : function() {
       this.cellsByColumn = {
         index : 0
@@ -1199,7 +1092,6 @@
       // get this.cellsByColumn.rowHeight
       this._getSegments(true);
     },
-
     _cellsByColumnLayout : function( $elems ) {
       var instance = this,
           props = this.cellsByColumn;
@@ -1213,23 +1105,18 @@
         props.index ++;
       });
     },
-
     _cellsByColumnGetContainerSize : function() {
       return { width : Math.ceil( this.$filteredAtoms.length / this.cellsByColumn.rows ) * this.cellsByColumn.columnWidth };
     },
-
     _cellsByColumnResizeChanged : function() {
       return this._checkIfSegmentsChanged(true);
     },
-
     // ====================== straightAcross ======================
-
     _straightAcrossReset : function() {
       this.straightAcross = {
         x : 0
       };
     },
-
     _straightAcrossLayout : function( $elems ) {
       var instance = this;
       $elems.each( function( i ){
@@ -1238,43 +1125,31 @@
         instance.straightAcross.x += $this.outerWidth(true);
       });
     },
-
     _straightAcrossGetContainerSize : function() {
       return { width : this.straightAcross.x };
     },
-
     _straightAcrossResizeChanged : function() {
       return true;
     }
-
   };
-
-
   // ======================= imagesLoaded Plugin ===============================
   /*! jQuery imagesLoaded plugin    */
-
-
   // $('#my-container').imagesLoaded(myFunction)
   // or
   // $('img').imagesLoaded(myFunction)
-
   // execute a callback when all images have loaded.
   // needed because .load() doesn't work on cached images
-
   // callback function gets image collection as argument
   //  `this` is the container
-
   $.fn.imagesLoaded = function( callback ) {
     var $this = this,
         $images = $this.find('img').add( $this.filter('img') ),
         len = $images.length,
         blank = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==',
         loaded = [];
-
     function triggerCallback() {
       callback.call( $this, $images );
     }
-
     function imgLoaded( event ) {
       var img = event.target;
       if ( img.src !== blank && $.inArray( img, loaded ) === -1 ){
@@ -1285,24 +1160,18 @@
         }
       }
     }
-
     // if no images, trigger immediately
     if ( !len ) {
       triggerCallback();
     }
-
     $images.bind( 'load.imagesLoaded error.imagesLoaded',  imgLoaded ).each( function() {
       // cached images don't fire load sometimes, so we reset src.
       var src = this.src;
-      
       this.src = blank;
       this.src = src;
     });
-
     return $this;
   };
-
-
   // helper function for logging errors
   // $.error breaks jQuery chaining
   var logError = function( message ) {
@@ -1310,14 +1179,10 @@
       window.console.error( message );
     }
   };
-
   // =======================  Plugin bridge  ===============================
   // leverages data method to either create or return $.Isotope constructor
   // A bit from jQuery UI
-
   // A bit from jcarousel
-
-
   $.fn.isotope = function( options, callback ) {
     if ( typeof options === 'string' ) {
       // call method
@@ -1354,5 +1219,4 @@
     // so plugin methods do not have to
     return this;
   };
-
 })( window, jQuery );
