@@ -296,6 +296,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6b4da8', end
 	padding-bottom: 30px;
 	text-align: center;
 }
+
+ol.type {
+	display: inline-block;
+}
 ul.cat li {
 	display: inline-block;
 }
