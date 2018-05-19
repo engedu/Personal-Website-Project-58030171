@@ -1,0 +1,18 @@
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+    background-image: url('/img/entersite.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+h1thanakrit{
+    stroke: black;
+}
+#rcorners2 {
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    padding: 20px; 
+    width: 200px;
+    height: 150px;    
+}

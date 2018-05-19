@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<title>Portfolio - Thanakrit</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/w3.css">
+<link rel="stylesheet" href="css/familylato.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+
+<!-- slideshow -->
+<link rel="stylesheet" type="text/css" href="css/slideshowgallery.css">
+
+<body>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="home.html" class="w3-bar-item w3-button">HOME</a>
+    <a href="portfolio.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> PORTFOLIO</a>
+    <a href="about.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> ABOUT ME</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
+      <i class="fa fa-search"></i>
+    </a>
+  </div>
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="home.html" class="w3-bar-item w3-button" onclick="toggleFunction()"> HOME</a>
+      <a href="portfolio.html" class="w3-bar-item w3-button" onclick="toggleFunction()"> PORTFOLIO</a>
+      <a href="about.html" class="w3-bar-item w3-button" onclick="toggleFunction()"> ABOUT ME</a>
+    </div>
+</div>
+<!-- First Parallax Image with Text -->
+<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+  <div class="w3-display-middle" style="white-space:nowrap;">
+    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">Personal <span class="w3-hide-small">Website</span> Project</span>
+    <div class="w3-center">
+    <button class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px"><a href="#portfolio" class="btn btn-default btn-lg page-scroll">Learn More</a> </button>
+    </div>
+  </div>
+</div>
+<!-- Second Parallax Image with Portfolio Text -->
+<div class="bgimg-2 w3-display-container w3-opacity-min" id="portfolio">
+    <div class="w3-display-middle">
+      <span class="w3-xxlarge w3-text-white w3-wide"  >PORTFOLIO</span>
+    </div>
+  </div>
+
+  <!-- Container (Portfolio Section) -->
+  <div class="w3-content w3-container w3-padding-64" >
+    <h3 class="w3-center">MY WORK</h3>
+    <div class="w3-row-padding w3-center">
+        <!--Slideshowgallery -->
+        <div class="container">
+          <div class="mySlides">
+            <div class="numbertext">1 / 6</div>
+            <img src="img/img1.jpg" style="width:100%">
+          </div>
+          <div class="mySlides">
+            <div class="numbertext">2 / 6</div>
+            <img src="img/img2.jpg" style="width:100%">
+          </div>
+          <div class="mySlides">
+            <div class="numbertext">3 / 6</div>
+            <img src="img/img3.jpg" style="width:100%">
+          </div>
+          <div class="mySlides">
+            <div class="numbertext">4 / 6</div>
+            <img src="img/img4.jpg" style="width:100%">
+          </div>
+          <div class="mySlides">
+            <div class="numbertext">5 / 6</div>
+            <img src="img/img5.jpg" style="width:100%">
+          </div>
+          <div class="mySlides">
+            <div class="numbertext">6 / 6</div>
+            <img src="img/img6.jpg" style="width:100%">
+          </div>
+          <a class="prev" onclick="plusSlides(-1)">❮</a>
+          <a class="next" onclick="plusSlides(1)">❯</a>
+          <div class="caption-container">
+            <p id="caption"></p>
+          </div>
+          <div class="row">
+            <div class="column">
+              <img class="demo cursor" src="img/img1.jpg" style="width:100%" onclick="currentSlide(1)" >
+            </div>
+            <div class="column">
+              <img class="demo cursor" src="img/img2.jpg" style="width:100%" onclick="currentSlide(2)" >
+            </div>
+            <div class="column">
+              <img class="demo cursor" src="img/img3.jpg" style="width:100%" onclick="currentSlide(3)" >
+            </div>
+            <div class="column">
+              <img class="demo cursor" src="img/img4.jpg" style="width:100%" onclick="currentSlide(4)" >
+            </div>
+            <div class="column">
+              <img class="demo cursor" src="img/img5.jpg" style="width:100%" onclick="currentSlide(5)" >
+            </div>    
+            <div class="column">
+              <img class="demo cursor" src="img/img6.jpg" style="width:100%" onclick="currentSlide(6)" >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
+  
+  <!-- Photo grid -->
+  <div class="w3-row w3-grayscale-min">
+    <div class="w3-quarter">
+      <img src="/img/portfolio/01-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/02-small.jpg" style="width:100%" onclick="onClick(this)">
+      <img src="/img/portfolio/03-small.jpg" style="width:100%" onclick="onClick(this)" >
+   </div>
+    
+   <div class="w3-quarter">
+      <img src="/img/portfolio/04-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/05-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/06-small.jpg" style="width:100%" onclick="onClick(this)">
+    </div>
+    
+    <div class="w3-quarter">
+      <img src="/img/portfolio/07-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/08-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/09-small.jpg" style="width:100%" onclick="onClick(this)" >
+    </div>
+
+    <div class="w3-quarter">
+      <img src="/img/portfolio/010-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/011-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/037-small.jpg" style="width:100%" onclick="onClick(this)" >
+    </div>
+    <div class="w3-quarter">
+      <img src="/img/portfolio/013-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/014-small.jpg" style="width:100%" onclick="onClick(this)">
+      <img src="/img/portfolio/015-small.jpg" style="width:100%" onclick="onClick(this)" >
+   </div>
+    
+   <div class="w3-quarter">
+      <img src="/img/portfolio/016-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/017-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/018-small.jpg" style="width:100%" onclick="onClick(this)">
+    </div>
+    
+    <div class="w3-quarter">
+      <img src="/img/portfolio/019-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/020-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/042-small.jpg" style="width:100%" onclick="onClick(this)">
+    </div>
+
+    <div class="w3-quarter">
+      <img src="/img/portfolio/022-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/023-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/024-small.jpg" style="width:100%" onclick="onClick(this)" >
+    </div>
+    <div class="w3-quarter">
+      <img src="/img/portfolio/025-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/026-small.jpg" style="width:100%" onclick="onClick(this)">
+      <img src="/img/portfolio/027-small.jpg" style="width:100%" onclick="onClick(this)" >
+   </div>
+    
+   <div class="w3-quarter">
+      <img src="/img/portfolio/028-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/029-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/030-small.jpg" style="width:100%" onclick="onClick(this)">
+    </div>
+    
+    <div class="w3-quarter">
+      <img src="/img/portfolio/031-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/032-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/033-small.jpg" style="width:100%" onclick="onClick(this)" >
+    </div>
+
+    <div class="w3-quarter">
+      <img src="/img/portfolio/034-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/035-small.jpg" style="width:100%" onclick="onClick(this)" >
+      <img src="/img/portfolio/036-small.jpg" style="width:100%" onclick="onClick(this)" >
+    </div>
+  </div>
+</div>
+  
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64 w3-hover-opacity-off">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="social">
+        <ul>
+          <li><a href="https://www.facebook.com/thanakrit.neung" target="_blank"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="https://twitter.com/thanakrit_neung" target="_blank" ><i class="fa fa-twitter"></i></a></li>
+          <li><a href="https://github.com/Thanakritneung"target="_blank"><i class="fa fa-github"></i></a></li>
+          <li><a href="https://www.instagram.com/thanakrit_neung/" target="_blank" ><i class="fa fa-instagram"></i></a></li>
+        </ul>
+      </div>
+  <p>Editer &copy; Thanakrit Chantranimit By <a href="https://www.youtube.com/TheHanasegawa" target="_blank" rel="nofollow">HANASEGAWA</a></p>
+</footer>
+
+
+<script type="text/javascript" src="js/home.js"></script>
+<script type="text/javascript" src="js/slideshowgallery.js"></script>
+<script type="text/javascript" src="js/modalimg.js"></script>
+</body>
+</html>

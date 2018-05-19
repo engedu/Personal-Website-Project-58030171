@@ -1,0 +1,119 @@
+/*hover menu*/
+#mySidenav a {
+    position: fixed;
+    left: -95px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 120px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    clear: both;
+}
+
+#mySidenav a:hover {
+    left: 0;
+    clear: both;
+}
+
+#hoverportfolio {
+    top: 80px;
+    background-color: #4CAF50;
+    clear: both;
+}
+
+#hoverabout {
+    top: 150px;
+    background-color: #2196F3;
+    clear: both;
+}
+
+
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+    height: 100%;
+    color: #777;
+    line-height: 1.8;
+}
+
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* First image (Logo. Full height) */
+.bgimg-1 {
+    background-image: url('/img/First.jpg');
+    min-height: 100%;
+}
+
+/* Second image (Portfolio) */
+.bgimg-2 {
+    background-image: url("/img/Second.jpg");
+    min-height: 400px;
+}
+
+/* Third image (Contact) */
+.bgimg-3 {
+    background-image: url("/img/Third.jpg");
+    min-height: 400px;
+}
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
+}
+
+/*skill*/
+* {box-sizing: border-box}
+.container {
+  width: 100%;
+  background-color: #ddd;
+}
+.skills {
+  text-align: right;
+  padding-right: 20px;
+  line-height: 20px;
+  color: white;
+}
+.HTML5 {width: 70%; background-color: #4CAF50;}
+.AfterEffect {width: 60%; background-color: #2196F3;}
+.Photoshop {width: 75%; background-color: #f44336;}
+.Creative {width: 50%; background-color: #808080;}
+/**/
+
+/*contact*/
+#social {
+	margin-top: 80px;
+}
+
+.social ul li {
+    display: inline-block;
+    list-style: none;
+	margin: 0 20px;
+}
+
+.li {
+    display:inline;
+    list-style: none;
+    }
+    
+.social i.fa {
+	font-size: 30px;
+	padding: 4px 5px;
+	color: #fff;
+	transition: all 0.5s;
+}
+.social i.fa:hover {
+	color: #121d1f;
+}
